@@ -1,0 +1,8 @@
+{
+    "python.pythonPath": "/home/pedro/dev/qrcodepix/backend/.venv/bin/python",
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}

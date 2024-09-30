@@ -1,0 +1,31 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "guilherme", email = "vinespedro55@gmail.com"},
+]
+dependencies = [
+    "requests>=2.32.3",
+    "pydantic>=2.9.2",
+    "uvicorn>=0.30.6",
+    "boto3>=1.35.24",
+    "crcmod>=1.7",
+    "qrcode>=7.4.2",
+    "pony>=0.7.19",
+    "pytest>=8.3.3",
+    "pytest-asyncio>=0.24.0",
+    "psycopg2-binary>=2.9.9",
+    "aiosqlite>=0.20.0",
+    "bcrypt>=4.2.0",
+    "pyjwt>=2.9.0",
+    "python-dotenv>=1.0.1",
+    "email-validator>=2.2.0",
+]
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
