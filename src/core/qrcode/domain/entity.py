@@ -3,12 +3,13 @@ import shutil
 from dataclasses import dataclass
 
 import boto3
-
+from dotenv import load_dotenv
 from qrcode.constants import (  # noqa
     ERROR_CORRECT_L,
 )
 from qrcode.main import QRCode as QRCODE
 
+load_dotenv()
 
 @dataclass
 class QRCode:
@@ -33,14 +34,14 @@ class QRCode:
 
     def save_in_storage(self, path_file: str, file_name: str):
         s3 = boto3.resource(
-        service_name='s3',
-        aws_access_key_id='0PCakUgdfkLgMbJ2',
-        aws_secret_access_key='LRn5fbbnuIRwIhkNDzMA55nyESuGy5R7g2a55VZV',
-        endpoint_url='https://s3.tebi.io'
+        service_name=os.getenv('SERVICE_NAME'),
+        aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+        aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
+        endpoint_url=os.getenv('ENDPOINT_URL'),
         )
         data = open(path_file, 'rb')
-        s3.Bucket('aula').put_object(Key=file_name, Body=data, ACL='public-read')
-        self.image_url = f"https://aula.s3.tebi.io/{file_name}"
+        s3.Bucket(os.getenv('BUCKET_NAME')).put_object(Key=file_name, Body=data, ACL='public-read')
+        self.image_url = f"https://{os.getenv('BUCKET_NAME')}.s3.tebi.io/{file_name}"
         self.clean_tmp()
             
     def clean_tmp(self):
