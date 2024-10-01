@@ -5,12 +5,12 @@ from typing import Self
 from email_validator import validate_email
 from pydantic import BaseModel, ConfigDict, model_validator
 
+from src.core.security.utils.hash import get_password_hash
 from src.core.user.domain.exceptions.user_exceptions import (
     InvalidEmailError,
     InvalidPasswordError,
     InvalidUserError,
 )
-from src.core.utils.hash import get_password_hash
 
 LENGTH_PASSWORD = 8
 
