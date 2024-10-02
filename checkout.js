@@ -1,4 +1,4 @@
-var stripe = Stripe('pk_test_51OUXtVAkBLVhTvf1vV0EQeDQnzXFENifuC3ip4YLdTn16CjZEPsygAJ2qGeZcgc6jMEwYL7NRLA5L5iGT9B9AJQ600Si88V3Jp');
+var stripe = Stripe('publishable_key');
 
 var form = document.getElementById('payment-form');
 form.addEventListener('submit', function(event) {
