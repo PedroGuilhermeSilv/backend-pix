@@ -22,6 +22,7 @@ class Product(BaseModel):
     unit_label: Optional[str]
     updated: int
     url: Optional[str]
+    unit_amount: int = None
 
 class ListProducts(BaseModel):
     object: str
