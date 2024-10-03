@@ -18,13 +18,15 @@ def create_jwt(payload: dict[str], expires_in: int) -> dict:
     )
 
 
-def decode_jwt(token: str) -> dict:
+def decode_jwt(token: str) -> dict | None:
     timezone = ZoneInfo("America/Sao_Paulo")
     decoded = jwt.decode(
         jwt=token,
         key=os.getenv("SECRET_KEY"),
         algorithms=[os.getenv("ALGORITHM")],
     )
+    if decoded.get("email") is None:
+        return None
 
     current_time = datetime.now(tz=timezone)
 
@@ -34,4 +36,33 @@ def decode_jwt(token: str) -> dict:
 
     decoded["exp"] = round(minutes)
 
+    if minutes < 0:
+        return None
+
     return decoded
+
+def refresh_jwt(token: str) -> dict | None:
+    timezone = ZoneInfo("America/Sao_Paulo")
+    decoded = jwt.decode(
+        jwt=token,
+        key=os.getenv("SECRET_KEY"),
+        algorithms=[os.getenv("ALGORITHM")],
+    )
+    if decoded.get("email") is None:
+        return None
+
+    current_time = datetime.now(tz=timezone)
+
+    exp_time = datetime.fromtimestamp(decoded["exp"], tz=timezone)
+
+    minutes = (exp_time - current_time).total_seconds() / 60
+
+    decoded["exp"] = round(minutes)
+
+    if minutes < 0:
+        return None
+
+    payload = {"email": decoded["email"]}
+    new_token = create_jwt(payload, 60)
+
+    return {"token": new_token, "exp": 60}

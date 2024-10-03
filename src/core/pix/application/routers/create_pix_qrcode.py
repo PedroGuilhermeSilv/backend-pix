@@ -1,5 +1,7 @@
-from fastapi import APIRouter
 
+from fastapi import APIRouter, Depends
+
+from src.api.middleware.auth import validation_jwt
 from src.core.pix.application.services.dto.pix_qrcode import (
     InputCreatePixQrCode,
     OutputCreatePixQrCode,
@@ -10,7 +12,10 @@ router = APIRouter()
 
 
 @router.post("/", response_model=OutputCreatePixQrCode)
-def create(request: InputCreatePixQrCode):
+def create(
+    request: InputCreatePixQrCode,
+    token_data: dict = Depends(validation_jwt)  
+):
     service = CreatePixQrCodeService()
     response = service.execute(request)
 

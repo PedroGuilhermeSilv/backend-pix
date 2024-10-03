@@ -21,7 +21,7 @@ class InvalidEmailError(Error):
 
 class InvalidPasswordError(Error):
     def __init__(self):
-        self.msg = "Password must be at least 8 characters long"
+        self.msg = "User or password is invalid"
         self.status_code = 422
 
 

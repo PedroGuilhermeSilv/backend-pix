@@ -41,7 +41,7 @@ class QRCode:
         )
         data = open(path_file, 'rb')
         s3.Bucket(os.getenv('BUCKET_NAME')).put_object(Key=file_name, Body=data, ACL='public-read')
-        self.image_url = f"https://{os.getenv('BUCKET_NAME')}.s3.tebi.io/{file_name}"
+        self.image_url = f"https://s3.tebi.io/{os.getenv('BUCKET_NAME')}/{file_name}"
         self.clean_tmp()
             
     def clean_tmp(self):
