@@ -9,3 +9,12 @@ class OutputAuthUserDto(BaseModel):
 class InputAuthUserDto(BaseModel):
     email: str
     password: str
+
+
+class InputVerifyToken(BaseModel):
+    token: str
+
+
+class OutputVerifyToken(BaseModel):
+    email: str
+    exp: int
