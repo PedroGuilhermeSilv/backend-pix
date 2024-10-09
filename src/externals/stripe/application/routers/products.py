@@ -23,6 +23,8 @@ def list_products() -> ListProducts:
         return ListProducts(object=products['object'], url=products['url'], has_more=products['has_more'], data=product_list)
     except Exception as error:
         raise HTTPException(status_code=500, detail=str(error))
+    
+    
 @router.get("/products/{price_id}")
 def get_price(price_id: str):
     try:

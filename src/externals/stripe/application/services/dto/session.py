@@ -7,3 +7,6 @@ class Item(BaseModel):
 
 class ListItems(BaseModel):
     data: list[Item]
+
+class StatusSession(BaseModel):
+    payment_status: str

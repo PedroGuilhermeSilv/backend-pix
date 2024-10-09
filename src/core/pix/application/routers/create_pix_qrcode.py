@@ -14,7 +14,7 @@ router = APIRouter()
 @router.post("/", response_model=OutputCreatePixQrCode)
 def create(
     request: InputCreatePixQrCode,
-    token_data: dict = Depends(validation_jwt)  
+    # token_data: dict = Depends(validation_jwt)  
 ):
     service = CreatePixQrCodeService()
     response = service.execute(request)
