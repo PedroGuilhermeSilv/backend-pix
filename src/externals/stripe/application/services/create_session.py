@@ -8,7 +8,6 @@ class CreateCheckout:
         self.user = user
 
     def create(self) -> str:
-        print(f"email:'{self.user}'")
         user = stripe.Customer.search(query=f"email:'{self.user}'")
         stripe_session = stripe.checkout.Session.create(
             payment_method_types=["card"],

@@ -16,3 +16,4 @@ class CreatePixQrCodeService:
         pix.qr_code.generate_qr_code(payload,image_name)
 
         return OutputCreatePixQrCode(image_url=pix.qr_code.image_url)
+
